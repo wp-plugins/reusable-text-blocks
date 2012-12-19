@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.0
+Version: 1.1
 */
 
 /*
@@ -99,8 +99,8 @@ function codex_text_block_updated_messages( $messages )
 // ADMIN: WIDGET ICONS
 function textblocks_css()
 {
-	$icon 		= plugins_url( 'text-blocks' ) . "/menu-icon.png";
-	$icon_32 	= plugins_url( 'text-blocks' ) . "/icon-32.png";
+	$icon 		= plugins_url( 'reusable-text-blocks' ) . "/menu-icon.png";
+	$icon_32 	= plugins_url( 'reusable-text-blocks' ) . "/icon-32.png";
 	
 	echo "
 		<style> 
