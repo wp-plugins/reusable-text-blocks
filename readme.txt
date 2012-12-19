@@ -17,7 +17,10 @@ This plugin creates a new 'text-blocks' custom post type with it's own section i
 You can add it to your site in three ways:
 
 Widget: Included widget allows you to specify with block and insert a title if needed.
-Shortcode: The listview includes a shortcode that you can insert into your pages and posts. [text-blocks id=1]
+
+Shortcode: The listview includes a shortcode that you can insert into your pages and posts.
+`[text-blocks id=1]`
+
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
 `<?php if(function_exists('show_text_block')) { echo show_text_block(421); } ?>`
@@ -32,7 +35,10 @@ PHP Function: A PHP function has been setup so you do not have to use the do_sho
 You can add it to your site in three ways:
 
 Widget: Included widget allows you to specify with block and insert a title if needed.
-Shortcode: The listview includes a shortcode that you can insert into your pages and posts. [text-blocks id=1]
+
+Shortcode: The listview includes a shortcode that you can insert into your pages and posts. 
+`[text-blocks id=1]`
+
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
 `<?php if(function_exists('show_text_block')) { echo show_text_block(421); } ?>`
