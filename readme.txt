@@ -16,7 +16,7 @@ This plugin creates a new 'text-blocks' custom post type with it's own section i
 
 You can add it to your site in three ways:
 
-Widget: Included widget allows you to specify with block and insert a title if needed.
+Widget: Included widget allows you to specify which block you want to insert. You can also include a title if needed.
 
 Shortcode: The listview includes a shortcode that you can insert into your pages and posts.
 `[text-blocks id=1]`
