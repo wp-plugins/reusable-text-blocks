@@ -52,6 +52,12 @@ PHP Function: A PHP function has been setup so you do not have to use the do_sho
 
 == Changelog ==
 
+= 1.2 =
+* Bug in widget select box (Thanks Shaun Forsyth)
+
+= 1.1 =
+* Small bug fixes
+
 = 1.0 =
 * Initial load of the plugin.
 

@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.1
+Version: 1.2
 */
 
 /*
@@ -176,7 +176,7 @@ class TextBlocksWidget extends WP_Widget
           <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Text Block:'); ?></label> 
           <select class="widefat" id="<?php echo $this->get_field_id('id'); ?>" name="<?php echo $this->get_field_name('id'); ?>">
           	<?php foreach($blocks as $block) { ?>
-          	<option value="<?php echo $block->ID; ?>"><?php echo $block->post_title; ?></option>
+          	<option value="<?php echo $block->ID; ?>"<?php if($selected_block == $block->ID) echo " selected=\"selected\""; ?>><?php echo $block->post_title; ?></option>
           	<?php } ?>
           </select>
 		</p>
