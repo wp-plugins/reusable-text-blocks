@@ -52,6 +52,10 @@ PHP Function: A PHP function has been setup so you do not have to use the do_sho
 
 == Changelog ==
 
+= 1.3 =
+* Added ability to set wpautop in widget
+* Also added filter to target widget code: 'text_blocks_widget_html'
+
 = 1.2 =
 * Bug in widget select box (Thanks Shaun Forsyth)
 

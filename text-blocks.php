@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.2
+Version: 1.3
 */
 
 /*
@@ -145,10 +145,15 @@ class TextBlocksWidget extends WP_Widget
         $title 		= isset($instance['title']) ? $instance['title'] : false;
         $id 		= (int) $instance['id'];
         $block 		= get_post( $id );
+        $wpautop	= isset($instance['wpautop']) ? $instance['wpautop'] : false;
+        
+        $block_content = $block->post_content;
+        if($wpautop == "on") { $block_content = wpautop($block_content); }
+       
         ?>
           <?php echo $before_widget; ?>
               <?php if ( $title ) echo $before_title . $title . $after_title; ?>
-				<div class="text-block"><?php echo $block->post_content; ?></div>
+				<div class="text-block"><?php echo apply_filters( 'text_blocks_widget_html', $block_content); ?></div>
           <?php echo $after_widget; ?>
         <?php
     }
@@ -158,6 +163,7 @@ class TextBlocksWidget extends WP_Widget
 		$instance = $old_instance;
 		$instance['title'] 		= strip_tags($new_instance['title']);
 		$instance['id'] 		= strip_tags($new_instance['id']);
+		$instance['wpautop'] 	= strip_tags($new_instance['wpautop']);
         return $instance;
     }
  
@@ -165,6 +171,7 @@ class TextBlocksWidget extends WP_Widget
     {	
         $title = isset($instance['title']) ? esc_attr($instance['title']) : "";
         $selected_block = isset($instance['id']) ? esc_attr($instance['id']) : 0;
+        $wpautop = isset($instance['wpautop']) ? esc_attr($instance['wpautop']) : 0;
         
         $blocks = get_posts( array('post_type' => 'text-blocks', 'numberposts' => -1, 'orderby' => 'title', 'order' => 'ASC' ));
         ?>
@@ -180,6 +187,12 @@ class TextBlocksWidget extends WP_Widget
           	<?php } ?>
           </select>
 		</p>
+
+		<p>
+			<input id="<?php echo $this->get_field_id('wpautop'); ?>" name="<?php echo $this->get_field_name('wpautop'); ?>" type="checkbox"<?php if($wpautop == "on") echo " checked='checked'"; ?>>&nbsp;
+			<label for="<?php echo $this->get_field_id('wpautop'); ?>">Automatically add paragraphs</label>
+		</p>
+		
         <?php 
     }
 }
