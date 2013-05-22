@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.4
+Version: 1.4.1
 */
 
 /*
@@ -118,8 +118,7 @@ function textblocks_columns( $columns )
 		'cb'       	=> '<input type="checkbox" />',
 		'title'    	=> __( 'Title', 'text-blocks' ),
 		'shortcode'	=> __( 'Shortcode', 'text-blocks' ),
-		'text'     	=> __( 'Text', 'text-blocks' ),
-		'date'     	=> __( 'Date', 'text-blocks' )
+		'text'     	=> __( 'Text', 'text-blocks' )
 	);
 }
 
@@ -130,7 +129,15 @@ function textblocks_add_columns( $column )
 	$edit_link = get_edit_post_link( $post->ID );
 
 	if ( $column == 'text' ) echo strip_tags($post->post_content);	
- 	if(	$column == "shortcode") echo "[text-blocks id={$post->ID}]";	
+ 	if(	$column == "shortcode") 
+ 	{
+ 		echo "
+ 				[text-blocks id={$post->ID}]<br />
+ 				[text-blocks id={$post->post_name}]<br /><hr />
+ 				[text-blocks id={$post->ID} plain=true]<br />
+ 				[text-blocks id={$post->post_name} plain=true]
+ 			";
+ 	}	
 }
 
 
@@ -149,9 +156,12 @@ function text_blocks_shortcode_metabox()
 {
 	global $post;
 	
-	echo "
-		<p>[text-blocks id={$post->ID}] &nbsp; or &nbsp; [text-blocks id={$post->post_name}]</p>
-	";
+	echo "<p><b>Like WordPress Content:</b><br />[text-blocks id={$post->ID}] &nbsp; or &nbsp; [text-blocks id={$post->post_name}]</p>";
+	
+	echo "<p><b>No extra markup:</b><br />[text-blocks id={$post->ID} plain=true] &nbsp; or &nbsp; [text-blocks id={$post->post_name} plain=true]</p>";
+	
+	echo "<p><b>In Theme Template:</b><br />&lt;?php if(function_exists('show_text_block')) { echo show_text_block('{$post->post_name}', true); } ?&gt;</p>";
+	
 	
 	echo '<span class="description">' . __('Put one of the above codes wherever you want the text block to appear', 'text-blocks') . '</span>';	
 }
@@ -221,8 +231,8 @@ class TextBlocksWidget extends WP_Widget
     }
 }
 
-// SHOW TEXT BLOCK (needs one parameter $id)
-function show_text_block($id)
+// SHOW TEXT BLOCK
+function show_text_block($id, $plain = false)
 {
 	// IF ID IS NOT NUMERIC CHECK FOR SLUG
 	if(!is_numeric($id))
@@ -231,6 +241,11 @@ function show_text_block($id)
 		$id = $page->ID;
 	}
 
+	if($plain)
+	{
+		return apply_filters( 'text_blocks_shortcode_html', get_post_field('post_content', $id));
+	}
+	
 	$content = apply_filters( 'the_content', get_post_field('post_content', $id) );
 	return apply_filters( 'text_blocks_shortcode_html', $content);
 }
@@ -239,7 +254,8 @@ function show_text_block($id)
 function text_blocks_shortcode($atts)
 {
 	$id = isset($atts['id']) ? $atts['id'] : false;
-	if($id) { return show_text_block($id); }
+	$plain = isset($atts['plain']) ? 1 : 0;
+	if($id) { return show_text_block($id, $plain); }
 	else { return false; }
 }
 

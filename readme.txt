@@ -43,6 +43,8 @@ Widget: Included widget allows you to specify with block and insert a title if n
 Shortcode:
 `[text-blocks id=1] or [text-blocks id=text_block_slug]`
 
+`[text-blocks id=1 plain=true] or [text-blocks id=text_block_slug plain=true]`
+
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
 `<?php if(function_exists('show_text_block')) { echo show_text_block(421); } ?>`
@@ -59,6 +61,9 @@ or
 3. Widget included
 
 == Changelog ==
+
+= 1.4.1 =
+* Added second parameter to keep out the_content filter and display exactly what is in the content.
 
 = 1.4 =
 * Display by slug (post_name) or id
