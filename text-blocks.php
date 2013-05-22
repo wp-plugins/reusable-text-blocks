@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.3
+Version: 1.4
 */
 
 /*
@@ -33,7 +33,7 @@ add_filter( 'manage_edit-text-blocks_columns', 'textblocks_columns' );
 add_action( 'manage_text-blocks_posts_custom_column', 'textblocks_add_columns' );
 add_action( 'widgets_init', create_function('', 'return register_widget("TextBlocksWidget");') );
 add_shortcode( 'text-blocks', 'text_blocks_shortcode');
-
+add_action( 'add_meta_boxes', 'text_blocks_create_metaboxes' );
 
 // CUSTOM POST TYPE
 function create_text_block_type() 
@@ -134,6 +134,30 @@ function textblocks_add_columns( $column )
 }
 
 
+// METABOXES
+function text_blocks_create_metaboxes()
+{
+	// IF ON EDIT SHOW THE SHORTCODE
+	if(isset($_GET['action']) AND $_GET['action'] == "edit")
+	{
+		add_meta_box( 'text_blocks_shortcode_metabox', __('Text Block Shortcode', 'text-blocks'), 'text_blocks_shortcode_metabox', 'text-blocks', 'normal', 'default' );
+	}
+}
+
+/* SHORTCODE DISPLAY HELPER */
+function text_blocks_shortcode_metabox()
+{
+	global $post;
+	
+	echo "
+		<p>[text-blocks id={$post->ID}] &nbsp; or &nbsp; [text-blocks id={$post->post_name}]</p>
+	";
+	
+	echo '<span class="description">' . __('Put one of the above codes wherever you want the text block to appear', 'text-blocks') . '</span>';	
+}
+
+
+
 // TEXT BLOCK WIDGET
 class TextBlocksWidget extends WP_Widget 
 {
@@ -153,7 +177,7 @@ class TextBlocksWidget extends WP_Widget
         ?>
           <?php echo $before_widget; ?>
               <?php if ( $title ) echo $before_title . $title . $after_title; ?>
-				<div class="text-block"><?php echo apply_filters( 'text_blocks_widget_html', $block_content); ?></div>
+				<div class="text-block <?php echo $block->post_name ?>"><?php echo apply_filters( 'text_blocks_widget_html', $block_content); ?></div>
           <?php echo $after_widget; ?>
         <?php
     }
@@ -200,6 +224,13 @@ class TextBlocksWidget extends WP_Widget
 // SHOW TEXT BLOCK (needs one parameter $id)
 function show_text_block($id)
 {
+	// IF ID IS NOT NUMERIC CHECK FOR SLUG
+	if(!is_numeric($id))
+	{
+		$page = get_page_by_path( $id, null, 'text-blocks' );
+		$id = $page->ID;
+	}
+
 	$content = apply_filters( 'the_content', get_post_field('post_content', $id) );
 	return apply_filters( 'text_blocks_shortcode_html', $content);
 }
@@ -207,7 +238,7 @@ function show_text_block($id)
 // SHORT CODE
 function text_blocks_shortcode($atts)
 {
-	$id = isset($atts['id']) ? (int) $atts['id'] : false;
+	$id = isset($atts['id']) ? $atts['id'] : false;
 	if($id) { return show_text_block($id); }
 	else { return false; }
 }

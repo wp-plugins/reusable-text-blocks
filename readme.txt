@@ -18,12 +18,16 @@ You can add it to your site in three ways:
 
 Widget: Included widget allows you to specify which block you want to insert. You can also include a title if needed.
 
-Shortcode: The listview includes a shortcode that you can insert into your pages and posts.
-`[text-blocks id=1]`
+Shortcode:
+`[text-blocks id=1] or [text-blocks id=text_block_slug]`
 
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
 `<?php if(function_exists('show_text_block')) { echo show_text_block(421); } ?>`
+
+or
+
+`<?php if(function_exists('show_text_block')) { echo show_text_block('slug'); } ?>`
 
 
 == Installation ==
@@ -36,12 +40,16 @@ You can add it to your site in three ways:
 
 Widget: Included widget allows you to specify with block and insert a title if needed.
 
-Shortcode: The listview includes a shortcode that you can insert into your pages and posts. 
-`[text-blocks id=1]`
+Shortcode:
+`[text-blocks id=1] or [text-blocks id=text_block_slug]`
 
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
 `<?php if(function_exists('show_text_block')) { echo show_text_block(421); } ?>`
+
+or
+
+`<?php if(function_exists('show_text_block')) { echo show_text_block('slug'); } ?>`
 
 
 == Screenshots ==
@@ -51,6 +59,10 @@ PHP Function: A PHP function has been setup so you do not have to use the do_sho
 3. Widget included
 
 == Changelog ==
+
+= 1.4 =
+* Display by slug (post_name) or id
+* Slug class added to widget so you can target text-blocks easier with CSS
 
 = 1.3 =
 * Added ability to set wpautop in widget
