@@ -67,7 +67,7 @@ function create_text_block_type()
 					'hierarchical' 			=> false,
 					'menu_position' 		=> 26.4,
 					'exclude_from_search' 	=> true,
-					'supports' 				=> array( 'title', 'editor' )
+					'supports' 				=> array( 'title', 'editor', 'thumbnail' )
 					);
 					
 	register_post_type( 'text-blocks', $args );

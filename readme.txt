@@ -62,6 +62,9 @@ or
 
 == Changelog ==
 
+= 1.4.2 =
+* Post thumbnail support added.
+
 = 1.4.1 =
 * Added second parameter to keep out the_content filter and display exactly what is in the content.
 
