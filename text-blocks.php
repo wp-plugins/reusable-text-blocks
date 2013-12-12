@@ -154,10 +154,10 @@ function textblocks_add_columns( $column )
  	if(	$column == "shortcode") 
  	{
  		echo "
- 				[text-blocks id={$post->ID}]<br />
- 				[text-blocks id={$post->post_name}]<br /><hr />
- 				[text-blocks id={$post->ID} plain=true]<br />
- 				[text-blocks id={$post->post_name} plain=true]
+ 				[text-blocks id=\"{$post->ID}\"]<br />
+ 				[text-blocks id=\"{$post->post_name}\"]<br /><hr />
+ 				[text-blocks id=\"{$post->ID}\" plain=1]<br />
+ 				[text-blocks id=\"{$post->post_name}\" plain=1]
  			";
  	}	
 }
