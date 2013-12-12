@@ -2,8 +2,8 @@
 Contributors: halgatewood
 Donate link: http://halgatewood.com/text-blocks/
 Tags: content, block, reusable content, reusable text, widget, shortcode
-Requires at least: 3
-Tested up to: 3.6
+Requires at least: 3.5
+Tested up to: 3.8
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ You can add it to your site in three ways:
 Widget: Included widget allows you to specify which block you want to insert. You can also include a title if needed.
 
 Shortcode:
-`[text-blocks id=1] or [text-blocks id=text_block_slug]`
+`[text-blocks id="1"] or [text-blocks id="text_block_slug"]`
 
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
@@ -41,9 +41,9 @@ You can add it to your site in three ways:
 Widget: Included widget allows you to specify with block and insert a title if needed.
 
 Shortcode:
-`[text-blocks id=1] or [text-blocks id=text_block_slug]`
+`[text-blocks id="1"] or [text-blocks id="text_block_slug"]`
 
-`[text-blocks id=1 plain=true] or [text-blocks id=text_block_slug plain=true]`
+`[text-blocks id="1" plain=1] or [text-blocks id="text_block_slug"" plain=1]`
 
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
@@ -61,6 +61,10 @@ or
 3. Widget included
 
 == Changelog ==
+
+= 1.4.4 =
+* Moved init into plugins_loaded
+* WordPresss 3.8 testing and icon
 
 = 1.4.2 =
 * Post thumbnail support added.

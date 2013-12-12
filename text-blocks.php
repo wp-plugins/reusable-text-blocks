@@ -5,7 +5,7 @@ Plugin URI: http://halgatewood.com/text-blocks
 Description: Blocks of content that can be used throughout the site in theme templates and widgets.
 Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
-Version: 1.4.2
+Version: 1.4.3
 */
 
 /*
@@ -26,14 +26,20 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 
 // ADDS
-add_action( 'init', 'create_text_block_type' );
-add_filter( 'post_updated_messages', 'codex_text_block_updated_messages' );
-add_action( 'admin_head', 'textblocks_css' );
-add_filter( 'manage_edit-text-blocks_columns', 'textblocks_columns' );
-add_action( 'manage_text-blocks_posts_custom_column', 'textblocks_add_columns' );
-add_action( 'widgets_init', create_function('', 'return register_widget("TextBlocksWidget");') );
-add_shortcode( 'text-blocks', 'text_blocks_shortcode');
-add_action( 'add_meta_boxes', 'text_blocks_create_metaboxes' );
+add_action( 'plugins_loaded', 'text_block_setup' );
+function text_block_setup()
+{
+	add_action( 'init', 'create_text_block_type' );
+	add_filter( 'post_updated_messages', 'codex_text_block_updated_messages' );
+	add_action( 'admin_head', 'textblocks_css' );
+	add_filter( 'manage_edit-text-blocks_columns', 'textblocks_columns' );
+	add_action( 'manage_text-blocks_posts_custom_column', 'textblocks_add_columns' );
+	add_action( 'widgets_init', create_function('', 'return register_widget("TextBlocksWidget");') );
+	add_shortcode( 'text-blocks', 'text_blocks_shortcode');
+	add_action( 'add_meta_boxes', 'text_blocks_create_metaboxes' );
+}
+
+
 
 // CUSTOM POST TYPE
 function create_text_block_type() 
@@ -99,6 +105,21 @@ function codex_text_block_updated_messages( $messages )
 // ADMIN: WIDGET ICONS
 function textblocks_css()
 {
+	global $wp_version;
+
+	if($wp_version >= 3.8)
+	{
+	
+	echo '
+		<style> 
+			#adminmenu #menu-posts-text-blocks div.wp-menu-image:before { content: "\f180"; }
+		</style>
+	';
+	}
+	else
+	{
+	
+	
 	$icon 		= plugins_url( 'reusable-text-blocks' ) . "/menu-icon.png";
 	$icon_32 	= plugins_url( 'reusable-text-blocks' ) . "/icon-32.png";
 	
@@ -109,6 +130,7 @@ function textblocks_css()
 			.icon32-posts-text-blocks { background: url({$icon_32}) no-repeat 0 0 !important; }
 		</style>
 	";	
+	}	
 }
 
 // CUSTOM COLUMNS
@@ -156,9 +178,9 @@ function text_blocks_shortcode_metabox()
 {
 	global $post;
 	
-	echo "<p><b>Like WordPress Content:</b><br />[text-blocks id={$post->ID}] &nbsp; or &nbsp; [text-blocks id={$post->post_name}]</p>";
+	echo "<p><b>Like WordPress Content:</b><br />[text-blocks id=\"{$post->ID}\"] &nbsp; or &nbsp; [text-blocks id=\"{$post->post_name}\"]</p>";
 	
-	echo "<p><b>No extra markup:</b><br />[text-blocks id={$post->ID} plain=true] &nbsp; or &nbsp; [text-blocks id={$post->post_name} plain=true]</p>";
+	echo "<p><b>No extra markup:</b><br />[text-blocks id=\"{$post->ID}\" plain=1] &nbsp; or &nbsp; [text-blocks id=\"{$post->post_name}\" plain=1]</p>";
 	
 	echo "<p><b>In Theme Template:</b><br />&lt;?php if(function_exists('show_text_block')) { echo show_text_block('{$post->post_name}', true); } ?&gt;</p>";
 	
