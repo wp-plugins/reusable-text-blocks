@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: http://halgatewood.com/text-blocks/
 Tags: content, block, reusable content, reusable text, widget, shortcode
 Requires at least: 3.5
-Tested up to: 3.8
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
