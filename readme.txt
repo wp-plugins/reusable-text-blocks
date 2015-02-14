@@ -59,6 +59,7 @@ or
 1. Text Blocks list view, with quick view of content and shortcode.
 2. Uses standard WordPress functionality. No surprises, you already know how to use it.
 3. Widget included
+4. New in 1.4.6: Media Button
 
 == Changelog ==
 
