@@ -60,6 +60,7 @@ or
 2. Uses standard WordPress functionality. No surprises, you already know how to use it.
 3. Widget included
 4. New in 1.4.6: Media Button
+5. Create custom templates
 
 == Changelog ==
 
