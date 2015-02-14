@@ -1,6 +1,6 @@
 === Reusable Text Blocks ===
 Contributors: halgatewood
-Donate link: http://halgatewood.com/text-blocks/
+Donate link: https://halgatewood.com/donate/
 Tags: content, block, reusable content, reusable text, widget, shortcode
 Requires at least: 3.5
 Tested up to: 4.1
@@ -12,7 +12,7 @@ Create reusable pieces of content that you can insert into themes, posts, pages 
 
 == Description ==
 
-This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly. 
+This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly.
 
 You can add it to your site in three ways:
 
@@ -43,7 +43,7 @@ Widget: Included widget allows you to specify with block and insert a title if n
 Shortcode:
 `[text-blocks id="1"] or [text-blocks id="text_block_slug"]`
 
-`[text-blocks id="1" plain=1] or [text-blocks id="text_block_slug"" plain=1]`
+`[text-blocks id="1" plain=1] or [text-blocks id="text_block_slug" plain=1]`
 
 PHP Function: A PHP function has been setup so you do not have to use the do_shortcode function. Go straight to the source with the following.
 
@@ -62,7 +62,21 @@ or
 
 == Changelog ==
 
-= 1.4.4 = 
+= 1.4.6 = 
+* Added .pot file, translation ready
+* Removed custom post messages
+* Added filter: 'text_blocks_post_type_args'
+* Added Media Button to quickly add shortcode to WP Text Editor
+* 'show_text_block' now has third parameter that passes all shortcode parameters to the text block, for example: [text-blocks id="198" location="okc"]
+* Create custom templates: text-blocks-{$id}.php, or pass template="homepage" in your shortcode for text-blocks-homepage.php
+* New checkbox in widget to hide the title
+
+= 1.4.5 =
+* Enabled revisions
+* Added filter: 'text_blocks_show_text_block_id'
+* Tested on WordPress 4.1
+
+= 1.4.4 =
 * Fix for error if no content found
 
 = 1.4.3 =
