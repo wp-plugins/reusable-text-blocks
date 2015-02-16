@@ -12,7 +12,7 @@ Create reusable pieces of content that you can insert into themes, posts, pages 
 
 == Description ==
 
-This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly.
+This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly. 
 
 You can add it to your site in three ways:
 
