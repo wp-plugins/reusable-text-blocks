@@ -7,7 +7,7 @@ Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
 Text Domain: text-blocks
 Domain Path: /languages
-Version: 1.4.6
+Version: 1.4.7
 */
 
 /*
@@ -175,7 +175,7 @@ function text_blocks_shortcode_metabox()
 
 	echo "<p><b>" . __('Like WordPress Content:', 'text-blocks') . "</b><br />[text-blocks id=\"{$post->ID}\"] &nbsp; or &nbsp; [text-blocks id=\"{$post->post_name}\"]</p>";
 
-	echo "<p><b>" . __('No extra markup:', 'text-blocks') . "</b><br />[text-blocks id=\"{$post->ID}\" plain=1] &nbsp; or &nbsp; [text-blocks id=\"{$post->post_name}\" plain=1]</p>";
+	echo "<p><b>" . __('No extra markup:', 'text-blocks') . "</b><br />[text-blocks id=\"{$post->ID}\" plain=\"1\"] &nbsp; or &nbsp; [text-blocks id=\"{$post->post_name}\" plain=\"1\"]</p>";
 
 	echo "<p><b>" . __('In Theme Template:', 'text-blocks') . "</b><br />&lt;?php if(function_exists('show_text_block')) { echo show_text_block('{$post->post_name}', true); } ?&gt;</p>";
 
@@ -200,7 +200,6 @@ class TextBlocksWidget extends WP_Widget
 
         $block_content = $block->post_content;
         if($wpautop == "on") { $block_content = wpautop($block_content); }
-
         ?>
           <?php echo $before_widget; ?>
               <?php if ( $title && !$hide_title ) echo $before_title . $title . $after_title; ?>
@@ -242,11 +241,11 @@ class TextBlocksWidget extends WP_Widget
 		</p>
 
 		<p>
-			<input id="<?php echo $this->get_field_id('wpautop'); ?>" name="<?php echo $this->get_field_name('wpautop'); ?>" type="checkbox"<?php if($wpautop) echo " checked='checked'"; ?>>&nbsp;
+			<input id="<?php echo $this->get_field_id('wpautop'); ?>" name="<?php echo $this->get_field_name('wpautop'); ?>" type="checkbox"<?php if($wpautop == "on") echo " checked='checked'"; ?>>&nbsp;
 			<label for="<?php echo $this->get_field_id('wpautop'); ?>"><?php _e('Automatically add paragraphs', 'text-blocks'); ?></label>
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('hide_title'); ?>" name="<?php echo $this->get_field_name('hide_title'); ?>" type="checkbox"<?php if($hide_title) echo " checked='checked'"; ?>>&nbsp;
+			<input id="<?php echo $this->get_field_id('hide_title'); ?>" name="<?php echo $this->get_field_name('hide_title'); ?>" type="checkbox"<?php if($hide_title == "on") echo " checked='checked'"; ?>>&nbsp;
 			<label for="<?php echo $this->get_field_id('hide_title'); ?>"><?php _e('Hide widget title on front end', 'text-blocks'); ?></label>
 		</p>
         <?php
@@ -296,7 +295,7 @@ function show_text_block($id, $plain = false, $atts = false)
 
 	// APPLY 'the_content' FILTER TO BLEND WITH EVERYTHING ELSE
 	$content = apply_filters( 'the_content', get_post_field( 'post_content', $id), $atts );
-	return apply_filters( 'text_blocks_shortcode_html', $content, $atts );
+	return apply_filters( 'text_blocks_shortcode_html', $content, $atts, $id );
 }
 
 

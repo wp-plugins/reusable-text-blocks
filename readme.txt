@@ -12,7 +12,7 @@ Create reusable pieces of content that you can insert into themes, posts, pages 
 
 == Description ==
 
-This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly. 
+This plugin creates a new 'text-blocks' custom post type with it's own section in the WordPress admin sidebar. It uses the standard WordPress user interface so you and your clients will know how to use it instantly.
 
 You can add it to your site in three ways:
 
@@ -59,10 +59,13 @@ or
 1. Text Blocks list view, with quick view of content and shortcode.
 2. Uses standard WordPress functionality. No surprises, you already know how to use it.
 3. Widget included
-4. New in 1.4.6: Media Button
-5. Create custom templates
 
 == Changelog ==
+
+= 1.4.7 =
+* Added ‘id’ to text_blocks_shortcode_html filter
+* Fixed widget checkboxes with on
+* Added quotes around plain=1
 
 = 1.4.6 = 
 * Added .pot file, translation ready
