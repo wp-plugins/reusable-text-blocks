@@ -59,8 +59,6 @@ or
 1. Text Blocks list view, with quick view of content and shortcode.
 2. Uses standard WordPress functionality. No surprises, you already know how to use it.
 3. Widget included
-4. New in 1.4.6: Media Button
-5. Create custom templates
 
 == Changelog ==
 
@@ -74,7 +72,6 @@ or
 * Added Media Button to quickly add shortcode to WP Text Editor
 * 'show_text_block' now has third parameter that passes all shortcode parameters to the text block, for example: [text-blocks id="198" location="okc"]
 * Create custom templates: text-blocks-{$id}.php, or pass template="homepage" in your shortcode for text-blocks-homepage.php
-* New checkbox in widget to hide the title
 
 = 1.4.5 =
 * Enabled revisions
