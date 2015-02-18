@@ -64,6 +64,8 @@ or
 
 = 1.4.7 =
 * Added ‘id’ to text_blocks_shortcode_html filter
+* Fixed widget checkboxes with on
+* Added quotes around plain=1
 
 = 1.4.6 = 
 * Added .pot file, translation ready
@@ -72,6 +74,7 @@ or
 * Added Media Button to quickly add shortcode to WP Text Editor
 * 'show_text_block' now has third parameter that passes all shortcode parameters to the text block, for example: [text-blocks id="198" location="okc"]
 * Create custom templates: text-blocks-{$id}.php, or pass template="homepage" in your shortcode for text-blocks-homepage.php
+* New checkbox in widget to hide the title
 
 = 1.4.5 =
 * Enabled revisions
