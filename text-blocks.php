@@ -7,7 +7,7 @@ Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
 Text Domain: text-blocks
 Domain Path: /languages
-Version: 1.4.7
+Version: 1.4.8
 */
 
 /*
@@ -56,7 +56,7 @@ function create_text_block_type()
 {
 	
 	// LOAD TEXT DOMAIN
-	load_plugin_textdomain( 'text_blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'text-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 	
   	$labels = array(
 				    'name' 					=> __('Text Blocks', 'text-blocks'),

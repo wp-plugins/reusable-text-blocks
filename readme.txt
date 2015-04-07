@@ -64,6 +64,9 @@ or
 
 == Changelog ==
 
+= 1.4.8 =
+* Fixed plugin not adhering to the language needed. Thanks @elvi992
+
 = 1.4.7 =
 * Added ‘id’ to text_blocks_shortcode_html filter
 * Fixed widget checkboxes with on
