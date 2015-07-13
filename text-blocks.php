@@ -7,7 +7,7 @@ Author: Hal Gatewood
 Author URI: http://www.halgatewood.com
 Text Domain: text-blocks
 Domain Path: /languages
-Version: 1.4.8
+Version: 1.4.9
 */
 
 /*
@@ -187,7 +187,7 @@ function text_blocks_shortcode_metabox()
 // TEXT BLOCK WIDGET
 class TextBlocksWidget extends WP_Widget
 {
-	function TextBlocksWidget() { parent::WP_Widget(false, $name = 'Text Blocks Widget'); }
+	function TextBlocksWidget() { parent::__construct(false, $name = 'Text Blocks Widget'); }
 
     function widget($args, $instance)
     {
