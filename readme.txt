@@ -3,7 +3,7 @@ Contributors: halgatewood
 Donate link: https://halgatewood.com/donate/
 Tags: content, block, reusable content, reusable text, widget, shortcode
 Requires at least: 3.5
-Tested up to: 4.1
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -63,6 +63,9 @@ or
 5. Create custom templates
 
 == Changelog ==
+
+= 1.4.9 =
+* WP_Widget construct changed
 
 = 1.4.8 =
 * Fixed plugin not adhering to the language needed. Thanks @elvi992
